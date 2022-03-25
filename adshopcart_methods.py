@@ -16,26 +16,21 @@ def setUp():
     print(f'------------------------------------')
     print(f'Test start at: {datetime.datetime.now()}')
 
-
-# make browser full screen
+    # make browser full screen
     driver.maximize_window()
-
-# give the browser up to 30 seconds to respond
+    # give the browser up to 30 seconds to respond
     driver.implicitly_wait(30)
-# navigate to Advantage Shopping website
+    # navigate to Advantage Shopping website
     driver.get(locators.adv_shop_cart_url)
-
-
-# check that Advantage Shopping URL and the home page title are displayed
-if driver.current_url == locators.adv_shop_cart_url and driver.title == 'Advantage Shopping':
-    print('Congratulations! Advantage Shopping website launched successfully')
-    print(f'Advantage Homepage URL: {driver.current_url}, Homepage title: {driver.title}')
-    sleep(10)
-
-else:
-    print(f'Oops! Advantage Shopping did not launch. Check your code or application!')
-    print(f'Current URL: {driver.current_url}, Page title: {driver.title}')
-    sleep(10)
+    # check that Advantage Shopping URL and the home page title are displayed
+    if driver.current_url == locators.adv_shop_cart_url and driver.title == '&nbsp;Advantage Shopping':
+        print('Congratulations! Advantage Shopping website launched successfully')
+        print(f'Advantage Homepage URL: {driver.current_url}, Homepage title: {driver.title}')
+        sleep(10)
+    else:
+        print(f'Oops! Advantage Shopping did not launch. Check your code or application!')
+        print(f'Current URL: {driver.current_url}, Page title: {driver.title}')
+        sleep(10)
 
 
 def teardown():
