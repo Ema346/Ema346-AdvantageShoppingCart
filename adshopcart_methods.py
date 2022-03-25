@@ -1,9 +1,8 @@
 import datetime
 import adshopcart_locators as locators
-from selenium import webdriver  # import selenium to the file
 from time import sleep
+from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.keys import Keys
 
 # create a Chrome driver instance, specify path to chromedriver file
 # # this give DeprecationWarning
@@ -19,12 +18,13 @@ def setUp():
 
 
 # make browser full screen
-driver.maximize_window()
+    driver.maximize_window()
 
 # give the browser up to 30 seconds to respond
-driver.implicitly_wait(30)
+    driver.implicitly_wait(30)
 # navigate to Advantage Shopping website
-driver.get(locators.adv_shop_cart_url)
+    driver.get(locators.adv_shop_cart_url)
+
 
 # check that Advantage Shopping URL and the home page title are displayed
 if driver.current_url == locators.adv_shop_cart_url and driver.title == 'Advantage Shopping':
