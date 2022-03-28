@@ -87,7 +87,6 @@ def sign_up():
 
 
 def check_full_name():
-    print(f'*******************************************************************************')
     if driver.current_url == locators.adv_shop_cart_url:  # check we are on home page
         assert driver.find_element(By.ID, 'menuUserLink').is_displayed()
         sleep(0.25)
@@ -95,7 +94,7 @@ def check_full_name():
         sleep(0.25)
         driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My account")]').click()
         sleep(0.25)
-        print(f'************Validating Full name is displayed*********************************')
+        print(f'************Checking Full name is displayed*********************************')
         if driver.find_element(By.XPATH, f'//label[contains(., "{locators.full_name}")]').is_displayed():
             print(f'Your account page is : {locators.full_name}.')
         else:
