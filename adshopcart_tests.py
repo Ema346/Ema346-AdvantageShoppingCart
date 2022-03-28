@@ -1,11 +1,11 @@
 import unittest
-import adshopcart_methods as methods
 import adshopcart_locators as locators
+import adshopcart_methods as methods
 
 
-class AdvantageShoppingAppPositiveTestCases(unittest.TestCase):
+class AdvantageshopAppPositiveTestCases(unittest.TestCase):
 
-    @staticmethod
+    @staticmethod  # signal to Unittest that this is a function inside class (vs @classmethod)
     def test_main_advantage_shopping():
         methods.setUp()
         methods.sign_up()
@@ -14,4 +14,5 @@ class AdvantageShoppingAppPositiveTestCases(unittest.TestCase):
         methods.log_out()
         methods.log_in()
         methods.delete_test_account()
+        methods.check_re_login()
         methods.teardown()

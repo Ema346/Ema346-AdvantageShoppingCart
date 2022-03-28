@@ -81,12 +81,13 @@ def sign_up():
         driver.find_element(By.NAME, 'i_agree').click()
         sleep(0.25)
         driver.find_element(By.ID, 'register_btnundefined').click()
-        sleep(0.25)
+        sleep(5)
         print(f' New user account is created')
         ################################################################################
 
 
 def check_full_name():
+    print(f'*******************************************************************************')
     if driver.current_url == locators.adv_shop_cart_url:  # check we are on home page
         assert driver.find_element(By.ID, 'menuUserLink').is_displayed()
         sleep(0.25)
@@ -94,11 +95,11 @@ def check_full_name():
         sleep(0.25)
         driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My account")]').click()
         sleep(0.25)
-        print(f'************Checking Full name is displayed*********************************')
+        print(f'************Validating Full name is displayed*********************************')
         if driver.find_element(By.XPATH, f'//label[contains(., "{locators.full_name}")]').is_displayed():
-            print(f'Your account page is : {locators.full_name}.')
+            print(f'You are in your account page: {locators.full_name}.')
         else:
-            print(f'Error, account page is not displayed')
+            print(f'Something is not right, account page is not displayed')
 
 
 def check_orders():
@@ -165,12 +166,4 @@ def check_re_login():
     print(f'***************Incorrect User name or password. User does not exist***************************')
 
 
-setUp()
-sign_up()
-check_full_name()
-check_orders()
-log_out()
-log_in()
-delete_test_account()
-check_re_login()
-teardown()
+
