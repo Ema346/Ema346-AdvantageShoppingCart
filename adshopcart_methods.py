@@ -166,4 +166,88 @@ def check_re_login():
     print(f'***************Incorrect User name or password. User does not exist***************************')
 
 
+def check_homepage():
+    print(f'------------------------------------- Validate Homepage -------------------------------------')
+    if driver.current_url == locators.adv_shop_cart_url:  # check we are on home page
+        driver.find_element(By.CSS_SELECTOR, '.closeBtn.loginPopUpCloseBtn').click()
+        sleep(2)
+        print(f'*************Check that SPEAKERS, TABLETS, HEADPHONES, LAPTOPS, MICE texts are displayed.**********')
+        for i in range(len(locators.product_list)):
+            assert driver.find_element(By.XPATH, f'//span[contains(., "{locators.product_list[i]}")]').is_displayed()
+            verifyproducts = driver.find_element(By.XPATH, f'//span[contains(., "{locators.product_list[i]}")]').is_displayed()
+            print(f'The product {locators.product_list[i]} text is displayed: {verifyproducts}')
+            sleep(0.75)
 
+        if driver.find_element(By.XPATH, '//h3[contains(.,"SPECIAL OFFER")]').is_displayed():
+            print(f'------------------ Check that links are clickable ------------------')
+            sleep(0.25)
+        driver.find_element(By.XPATH, '//a[normalize-space()="POPULAR ITEMS"]').click()
+        sleep(0.5)
+        if driver.find_element(By.XPATH, '//h3[normalize-space()="POPULAR ITEMS"]').is_displayed():
+            sleep(2)
+            driver.find_element(By.ID, 'details_21').click()
+            sleep(2.50)
+            print(f'------------------ HP ROAR PLUS WIRELESS SPEAKER: View Details Button Selected ------------------')
+            driver.find_element(By.XPATH, f'//span[contains(., "{locators.DEMO}")]').click()
+            sleep(0.25)
+            print(f'--------------- Our products page is displayed ------------------')
+        else:
+            print(f'------------------ Our products page is not displayed ------------------')
+
+        driver.find_element(By.XPATH, '//a[normalize-space()="SPECIAL OFFER"]').click()
+        sleep(0.5)
+        if driver.find_element(By.XPATH, '//h3[contains(.,"SPECIAL OFFER")]').is_displayed():
+            sleep(0.5)
+            print(f'--------------- Special offer page is displayed ------------------')
+        else:
+            print(f'************Special offer page is not displayed****************')
+
+        driver.find_element(By.XPATH, '//a[normalize-space()="POPULAR ITEMS"]').click()
+        sleep(0.5)
+        if driver.find_element(By.XPATH, '//h3[contains(.,"POPULAR ITEMS")]').is_displayed():
+            sleep(0.75)
+            print(f'------------------ Popular items page is displayed ------------------')
+        else:
+            print(f'************Popular items page is not displayed**************')
+
+        driver.find_element(By.XPATH, '//a[normalize-space()="CONTACT US"]').click()
+        sleep(0.75)
+        if driver.find_element(By.XPATH, '//h1[contains(.,"CONTACT US")]').is_displayed():
+            sleep(0.5)
+            print(f'------------------ Contact us page is displayed ------------------')
+        else:
+            print(f'***********Contact us page is not displayed***************')
+
+            print(f'************Check that main page logo is displayed***********************')
+        if driver.find_element(By.XPATH, '//span[contains(., "dvantage")]').is_displayed() \
+            and driver.find_element(By.XPATH, '//span[contains(., "DEMO")]').is_displayed():
+            sleep(0.75)
+            print(f'**********dvantage and DEMO from logo are displayed*************')
+        else:
+            print(f'**********The main logo is not displayed: check your code or website*************')
+
+        driver.find_element(By.XPATH, '//h1[contains(., "CONTACT US")]').is_displayed()
+        sleep(0.5)
+        Select(driver.find_element(By.NAME, 'categoryListboxContactUs')).select_by_visible_text('Laptops')
+        sleep(1)
+        Select(driver.find_element(By.NAME, 'productListboxContactUs')).select_by_visible_text('HP Pavilion 15z Touch Laptop')
+        sleep(0.75)
+        driver.find_element(By.NAME, 'emailContactUs').send_keys(locators.email)
+        sleep(0.75)
+        driver.find_element(By.NAME, 'subjectTextareaContactUs').send_keys(locators.Subject)
+        sleep(0.75)
+        driver.find_element(By.ID, 'send_btnundefined').click()
+        sleep(0.75)
+        if driver.find_element(By.XPATH, '//a[@class="a-button ng-binding"]').is_displayed():
+            print(f'Continue Shopping text is displayed')
+        else:
+            print(f'Continue Shopping text is not displayed ')
+
+        print(f'********Contact us return message*****************')
+        if driver.find_element(By.XPATH, f'//p[contains(., "Thank you for contacting Advantage support.")]').is_displayed():
+            print(f'Thank you for contacting Advantage support message is displayed')
+            sleep(5)
+        else:
+            print(f'Thank you message is not displayed')
+        driver.find_element(By.XPATH, f'//a[contains(., " CONTINUE SHOPPING ")]').click()
+        sleep(0.25)

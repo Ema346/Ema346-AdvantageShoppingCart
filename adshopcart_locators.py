@@ -1,3 +1,4 @@
+import datetime
 
 from faker import Faker
 
@@ -20,3 +21,7 @@ address = fake.street_address()
 phone = fake.phone_number()
 province = fake.province_abbr()
 postal_code = fake.postcode()
+DEMO = 'DEMO'
+
+product_list = ['SPEAKERS', 'TABLETS', 'LAPTOPS', 'HEADPHONES', 'MICE']
+Subject = fake.sentence(100)
